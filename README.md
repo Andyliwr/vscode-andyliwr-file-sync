@@ -1,65 +1,32 @@
-# andyliwr-file-sync README
+# andyliwr-file-sync
+写此插件的目的是用来帮助公司的开发人员解决内网传输代码的问题。如果对您也有所帮助，本人深感荣幸。
 
-This is the README for your extension "andyliwr-file-sync". After writing up a brief description, we recommend including the following sections.
+## 使用场景
+先来介绍下我司的开发服务器是怎么架构的，下面画了一张草图：
+![current_flow](https://olpkwt43d.qnssl.com/vscode/changed_flow.png)
+可以看到在本地无法通过ssh或者ftp连接到开发机，并且由于存在跳板机，ssh隧道的方式也行不通。
 
-## Features
+下面是我改进的传输方式：
+![changed_flow](https://olpkwt43d.qnssl.com/vscode/current_flow.png)
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+通过在开发机上搭建一个提供文件管理功能的node服务，然后使用nginx将其端口代理到80端口，使得在本地可以直接访问到这个node服务。在使用vscode编辑代码的时候，检测文件变化，当监听到用户按下了`ctrl+s`时将改动的文件使用http请求发送到node端，由node负责文件的更新、获取、和删除。[node端代码下载地址](https://github.com/Andyliwr/nodejs-ftp)
 
-For example if there is an image subfolder under your extension project workspace:
 
-\!\[feature X\]\(images/feature-x.png\)
+## 插件设置
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## 常见问题
 
-## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
+## 代码更新记录
 ### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+最初版代码
 
 -----------------------------------------------------------------------------------------------------------
 
-## Working with Markdown
 
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
+### 传送门
 
-* Split the editor (`Cmd+\` on OSX or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on OSX or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (OSX) to see a list of Markdown snippets
+* [andyliwr-file-sync](https://github.com/Andyliwr/vscode-andyliwr-file-sync)
+* [nodejs-ftp](https://github.com/Andyliwr/nodejs-ftp)
 
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+对此插件有任何疑问，欢迎发送邮件到我的邮箱`andyliwr@outlook.com`。

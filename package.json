@@ -10,15 +10,18 @@
     "categories": [
         "Other"
     ],
+    "icon": "icon.jpg",
     "activationEvents": [
         "onCommand:extension.sayHello"
     ],
     "main": "./out/src/extension",
     "contributes": {
-        "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
-        }]
+        "commands": [
+            {
+                "command": "extension.sayHello",
+                "title": "Hello World"
+            }
+        ]
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
